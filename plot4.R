@@ -22,14 +22,24 @@ householdPower$Date <- dmy(householdPower$Date)
 householdPower$Time <- hms(householdPower$Time)
 householdPower <- householdPower[householdPower$Date >= "2007-02-01" & householdPower$Date <= "2007-02-02",]
 
+plot2 <- function() {
+  plot(householdPower$Date+householdPower$Time, householdPower$Global_active_power, type="l", xlab = "", ylab = "GLobal Active Power")
+}
+plot3 <- function() {
+  plot(householdPower$Date+householdPower$Time, householdPower$Sub_metering_1, type="l", xlab = "", ylab = "Energy sub metering")
+  points(householdPower$Date+householdPower$Time,householdPower$Sub_metering_2,type="l",col="red")
+  points(householdPower$Date+householdPower$Time,householdPower$Sub_metering_3,type="l",col="blue")
+}
 plot4 <- function() {
   plot(householdPower$Date+householdPower$Time, householdPower$Global_reactive_power, type="l", xlab = "datetime", ylab = "GLobal_reactive_power")
 }
-
+plot5 <- function() {
+  plot(householdPower$Date+householdPower$Time, householdPower$Voltage, type="l", xlab = "datetime", ylab = "Voltage")
+}
 png("plot4.png")
 par(mfrow=c(2,2))
-plot1()
 plot2()
+plot5()
 plot3()
 plot4()
 dev.off()
